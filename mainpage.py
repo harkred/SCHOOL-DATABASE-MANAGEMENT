@@ -4,8 +4,9 @@ from ttkthemes import ThemedTk, THEMES
 from mainpage_views import MainpageView
 
 
-#Main
+#Main body
 class MainPage(MainpageView):
+
     def __init__(self):
         #Window with main frame
         self.mainpage = ThemedTk()
