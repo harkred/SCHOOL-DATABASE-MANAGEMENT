@@ -8,7 +8,7 @@ from mainpage_views import MainpageView
 class MainPage(MainpageView):
 
     def __init__(self):
-        #Window with main frame
+        """Window with main frame"""
         self.mainpage = ThemedTk()
         self.mainpage.resizable(0,0)
         self.mainframe = ttk.LabelFrame(self.mainpage)
@@ -18,9 +18,9 @@ class MainPage(MainpageView):
         self.notebook = ttk.Notebook(self.mainframe)
         self.notebook.pack(side='left', anchor=tk.N)
 
-    #For adding notebooks
+
     def add_notebooks(self):
-    
+        """For adding notebooks"""
         #Adding record frame
         self.frame_add = ttk.Frame(self.mainframe)
         self.notebook.add(self.frame_add, text='Add record')

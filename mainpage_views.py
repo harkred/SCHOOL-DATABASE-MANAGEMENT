@@ -2,13 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
 from ttkthemes import ThemedTk, THEMES
+from mainpage_backend import MainpageBackend
 
 #Views
-class MainpageView():
+class MainpageView(MainpageBackend):
     
-    #For adding data frame
     def add_Frame(self):
-        
+        """For adding data frame"""
         #Frame
         self.add_frame = ttk.LabelFrame(self.frame_add, text="Add a student's record")
         self.add_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
@@ -25,34 +25,33 @@ class MainpageView():
             ttk.Label(self.add_frame, text=label).grid(row=row, column=0, padx=10, pady=5)
         
         #Entries
-        self.name = ttk.Entry(self.add_frame, width=35)
-        self.clas = ttk.Entry(self.add_frame, width=35)
-        self.phone = ttk.Entry(self.add_frame, width=35)
-        self.dob = ttk.Entry(self.add_frame, width=35)
-        self.doa = ttk.Entry(self.add_frame, width=35)
-        entries = [
-                self.name,
-                self.clas,
-                self.phone,
-                self.dob,
-                self.doa
+        self.add_name = ttk.Entry(self.add_frame, width=35)
+        self.add_clas = ttk.Entry(self.add_frame, width=35)
+        self.add_phone = ttk.Entry(self.add_frame, width=35)
+        self.add_dob = ttk.Entry(self.add_frame, width=35)
+        self.add_doa = ttk.Entry(self.add_frame, width=35)
+        self.add_entries = [
+                self.add_name,
+                self.add_clas,
+                self.add_phone,
+                self.add_dob,
+                self.add_doa
         ]
         
         #Entry shoving
-        for row, entry in enumerate(entries):
+        for row, entry in enumerate(self.add_entries):
             entry.grid(row=row, column=1, columnspan=2, padx=10, pady=10)
             
         #Button for submiting
-        self.submit = ttk.Button(self.add_frame, text='Submit')
+        self.submit = ttk.Button(self.add_frame, text='Submit', command=self.add_data)
         self.submit.grid(column=1, padx=10, pady=10)
         
         #Progressbar
         self.add_progress = ttk.Progressbar(self.add_frame, length=400)
         self.add_progress.grid(column=0, columnspan=3, padx=20, pady=20)
     
-    #For searching data frame
     def search_Frame(self):
-        
+        """For searching data frame"""
         #Search frame
         self.search_frame = ttk.LabelFrame(self.frame_search, text="Search a student's record")
         self.search_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
@@ -81,9 +80,9 @@ class MainpageView():
         self.search_progress = ttk.Progressbar(self.search_frame, length=400)
         self.search_progress.grid(row=2, column=0, columnspan=3, padx=5, pady=10)
         
-    #For editing record frame
+    
     def edit_Frame(self):
-        
+        """For editing record frame"""
         #Editing frame
         self.edit_frame = ttk.LabelFrame(self.frame_edit, text="Search a student's data to edit")
         self.edit_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
@@ -140,10 +139,9 @@ class MainpageView():
         #Search/Edit progressbasr
         self.edit_search_progress = ttk.Progressbar(self.edit_frame, length=400)
         self.edit_search_progress.grid(column=0, columnspan=3, padx=5, pady=10)
-        
-    #For deleting record frame
+    
     def delete_Frame(self):
-        
+        """For deleting record frame"""
         #Delete frame
         self.delete_frame = ttk.LabelFrame(self.frame_delete, text='Delete a record')
         self.delete_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
@@ -176,9 +174,8 @@ class MainpageView():
         self.delete_progress = ttk.Progressbar(self.delete_frame, length=400)
         self.delete_progress.grid(row=2, column=0, columnspan=3, padx=5, pady=10)
         
-    #For setting theme frame
     def theme_Frame(self):
-        
+        """For setting theme frame"""
         #Theme frame 
         self.theme_frame = ttk.LabelFrame(self.frame_theme, text='Choose theme')
         self.theme_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
