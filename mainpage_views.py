@@ -68,13 +68,17 @@ class MainpageView(MainpageBackend):
         self.srch.focus()
         
         #Search button
-        self.srch_btn = ttk.Button(self.search_frame, text='Search')
+        self.srch_btn = ttk.Button(self.search_frame, text='Search', command=self.search_record)
         self.srch_btn.grid(row=0, column=2, padx=5, pady=10)
         
-        #ScrolledText for showing data
-        self.data = scrolledtext.ScrolledText(self.search_frame, width=50, height=15, wrap=tk.WORD)
-        self.data.grid(row=1, column=0, columnspan=3, padx=5, pady=10)
-        self.data.config(state='disabled')
+        #Listbox to show data
+        self.data_lst = tk.Listbox(self.search_frame, width=70, height=15)
+        self.data_lst.grid(row=1, column=0, columnspan=3, sticky=tk.E)
+        
+        self.data_lst_scroll = ttk.Scrollbar(self.search_frame, command=self.data_lst.yview)
+        self.data_lst_scroll.grid(row=1, column=3, sticky=tk.W, ipady=95)
+        
+        self.data_lst.config(yscrollcommand=self.data_lst_scroll.set)
         
         #Search progressbasr
         self.search_progress = ttk.Progressbar(self.search_frame, length=400)
