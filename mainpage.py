@@ -10,6 +10,12 @@ class MainPage(MainpageView):
     def __init__(self):
         """Window with main frame"""
         self.mainpage = ThemedTk()
+        
+        screen_width = self.mainpage.winfo_screenwidth()
+        screen_height = self.mainpage.winfo_screenheight()
+        
+        self.mainpage.geometry(f'+{screen_width//4}+{screen_height//4}')
+        
         self.mainpage.resizable(0,0)
         self.mainframe = ttk.LabelFrame(self.mainpage)
         self.mainframe.pack(fill=tk.BOTH, expand=1)

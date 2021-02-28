@@ -103,7 +103,7 @@ class MainpageView(MainpageBackend):
         self.edit_srch.focus()
         
         #Search button
-        self.edit_srch_btn = ttk.Button(self.edit_frame, text='Search')
+        self.edit_srch_btn = ttk.Button(self.edit_frame, text='Search', command=self.edit_search_record)
         self.edit_srch_btn.grid(row=0, column=2, padx=5, pady=10)
         
         #Labels
@@ -118,26 +118,26 @@ class MainpageView(MainpageBackend):
             ttk.Label(self.edit_frame, text=label).grid(row=row+1, column=0, padx=10, pady=5)
         
         #Entries
-        self.name = ttk.Entry(self.edit_frame, width=35)
-        self.clas = ttk.Entry(self.edit_frame, width=35)
-        self.phone = ttk.Entry(self.edit_frame, width=35)
-        self.dob = ttk.Entry(self.edit_frame, width=35)
-        self.doa = ttk.Entry(self.edit_frame, width=35)
-        entries = [
-                self.name,
-                self.clas,
-                self.phone,
-                self.dob,
-                self.doa
+        self.edit_name = ttk.Entry(self.edit_frame, width=35)
+        self.edit_clas = ttk.Entry(self.edit_frame, width=35)
+        self.edit_phone = ttk.Entry(self.edit_frame, width=35)
+        self.edit_dob = ttk.Entry(self.edit_frame, width=35)
+        self.edit_doa = ttk.Entry(self.edit_frame, width=35)
+        self.edit_entries = [
+                self.edit_name,
+                self.edit_clas,
+                self.edit_phone,
+                self.edit_dob,
+                self.edit_doa
         ]
         
         #Entry shoving
-        for row, entry in enumerate(entries):
+        for row, entry in enumerate(self.edit_entries):
             entry.grid(row=row+1, column=1, columnspan=2, padx=10, pady=10)
             entry.config(state='readonly')
             
         #Button for editing
-        self.submit = ttk.Button(self.edit_frame, text='Edit')
+        self.submit = ttk.Button(self.edit_frame, text='Edit', command=self.edit_record)
         self.submit.grid(column=1, padx=10, pady=10)
         
         #Search/Edit progressbasr
