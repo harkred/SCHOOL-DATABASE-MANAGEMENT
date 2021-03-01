@@ -161,22 +161,26 @@ class MainpageView(MainpageBackend):
         self.del_srch.grid(row=0, column=1, padx=10, pady=10)
         self.del_srch.focus()
         
+        #Label
+        ttk.Label(self.delete_frame, text='Double click a record to delete').grid(row=1, column=0, columnspan=3)
+        
         #Delte item lstbox
         self.del_lst = tk.Listbox(self.delete_frame, width=70, height=15)
-        self.del_lst.grid(row=1, column=0, columnspan=3, sticky=tk.E)
+        self.del_lst.grid(row=2, column=0, columnspan=3, sticky=tk.E)
+        self.del_lst.bind('<Double 1>', self.del_record)
         
         self.del_lst_scroll = ttk.Scrollbar(self.delete_frame, command=self.del_lst.yview)
-        self.del_lst_scroll.grid(row=1, column=3, sticky=tk.W, ipady=95)
+        self.del_lst_scroll.grid(row=2, column=3, sticky=tk.W, ipady=95)
         
         self.del_lst.config(yscrollcommand=self.del_lst_scroll.set)
         
         #Search button
-        self.del_srch_btn = ttk.Button(self.delete_frame, text='Search')
+        self.del_srch_btn = ttk.Button(self.delete_frame, text='Search', command=self.del_search_record)
         self.del_srch_btn.grid(row=0, column=2, padx=10, pady=10)
         
         #Delete progressbasr
         self.delete_progress = ttk.Progressbar(self.delete_frame, length=400)
-        self.delete_progress.grid(row=2, column=0, columnspan=3, padx=5, pady=10)
+        self.delete_progress.grid(row=3, column=0, columnspan=3, padx=5, pady=10)
         
     def theme_Frame(self):
         """For setting theme frame"""

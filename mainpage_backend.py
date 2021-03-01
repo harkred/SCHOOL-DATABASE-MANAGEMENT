@@ -176,3 +176,32 @@ class MainpageBackend():
             except Exception as e: msg.showerror('', 'Please fill dates in the designated')
         
         else: msg.showerror('', 'Please fill the phone number properly')
+        
+    def del_search_record(self):
+        """For searching a record to  delete"""
+        
+        try: self.del_lst.delete(0, tk.END)
+        except Exception as e: pass
+        
+        datas = execute_cmd("""
+                SELECT * FROM student_data WHERE {} = %s
+        """.format(self.del_bywat_combo.get()), values=(self.del_srch.get(),), database='school')
+        
+        self.del_srch.delete(0, tk.END)
+        
+        if len(datas) == 0: msg.showerror('', 'Student data not found')
+        
+        else:
+            msg.showinfo('', 'Student data found')
+            for data in datas:
+                self.del_lst.insert(tk.END, data)
+    
+    def del_record(self, event):
+        """For deleting the selected record"""
+
+        execute_cmd("""
+                DELETE FROM student_data WHERE id = %s
+        """, values=(self.del_lst.get(tk.ANCHOR)[0],), database='school')
+        
+        self.del_lst.delete(tk.ANCHOR)
+        msg.showinfo('', 'Record sucessfully deleted')
