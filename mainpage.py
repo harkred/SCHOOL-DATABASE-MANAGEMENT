@@ -3,7 +3,6 @@ from tkinter import ttk
 from ttkthemes import ThemedTk, THEMES
 from mainpage_views import MainpageView
 
-
 #Main body
 class MainPage(MainpageView):
 

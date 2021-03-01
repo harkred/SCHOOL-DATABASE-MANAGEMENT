@@ -2,8 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as msg
 from mysql_commands import execute_cmd
+from mainpage_thread import MainpageThread
 
-class MainpageBackend():
+#Backend
+class MainpageBackend(MainpageThread):
     def clear_entries(self, entries):
         """For clearing entries"""
         for entry in entries:
@@ -21,13 +23,18 @@ class MainpageBackend():
         
         else:
             if values[2].isdigit():
+
                 try:
                     execute_cmd("""
                         INSERT INTO student_data(Name, Class, Phone, DOB, DOA)
                         VALUES(%s, %s, %s, %s, %s)
                 """, values, 'school') #Adds valid record
-                    msg.showinfo('', 'Record sucessfully added')
                     self.clear_entries(self.add_entries)
+                    
+                    for entry in self.add_entries:
+                        entry.config(state='readonly')
+                        
+                    self.create_thread(self.addprogress)
                     
                 except Exception as e: msg.showerror('', 'Please fill dates in the designated')
             else: msg.showerror('', 'Please fill the phone number properly')
