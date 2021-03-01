@@ -94,6 +94,12 @@ class MainpageBackend():
             #Choosing the record
             choose_rec = tk.Tk()
             choose_rec.resizable(0,0)
+            choose_rec.title('Choose a record to edit by double clicking it')
+            
+            screen_width = choose_rec.winfo_screenwidth()
+            screen_height = choose_rec.winfo_screenheight()
+            
+            choose_rec.geometry(f'+{screen_width//4}+{screen_height//4}')
             
             #Listbox 
             choose_lst = tk.Listbox(choose_rec, width=100)
@@ -133,6 +139,7 @@ class MainpageBackend():
         #Data editin when more than 1 data is fetched
         elif len(datas) > 1:
             self.edit_srch.delete(0, tk.END)
+            msg.showinfo('', 'More than 1 student reord found, choose on to edit')
             choose_record()
             
     def edit_record(self):
