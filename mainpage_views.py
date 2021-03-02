@@ -137,8 +137,8 @@ class MainpageView(MainpageBackend):
             entry.config(state='readonly')
             
         #Button for editing
-        self.submit = ttk.Button(self.edit_frame, text='Edit', command=self.edit_record)
-        self.submit.grid(column=1, padx=10, pady=10)
+        self.edit = ttk.Button(self.edit_frame, text='Edit', state='disabled', command=self.edit_record)
+        self.edit.grid(column=1, padx=10, pady=10)
         
         #Search/Edit progressbasr
         self.edit_search_progress = ttk.Progressbar(self.edit_frame, length=400)

@@ -172,7 +172,9 @@ class MainpageBackend(MainpageThread):
                 
                 for entry in self.edit_entries:
                     entry.config(state='readonly')
-                    
+                
+                self.edit.config(state='disabled')
+                
             except Exception as e: msg.showerror('', 'Please fill dates in the designated')
         
         else: msg.showerror('', 'Please fill the phone number properly')
