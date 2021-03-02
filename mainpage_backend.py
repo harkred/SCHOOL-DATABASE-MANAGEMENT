@@ -33,8 +33,9 @@ class MainpageBackend(MainpageThread):
                     
                     for entry in self.add_entries:
                         entry.config(state='readonly')
-                        
-                    self.create_thread(self.addprogress)
+                    
+                    #Threading
+                    self.create_thread(self.addprogress_thread, [])
                     
                 except Exception as e: msg.showerror('', 'Please fill dates in the designated')
             else: msg.showerror('', 'Please fill the phone number properly')
@@ -52,17 +53,9 @@ class MainpageBackend(MainpageThread):
         
         if len(datas) == 0: msg.showerror('', 'Student data not found')
         
-        else:
-            msg.showinfo('', 'Student data found')
-            
-            for data in datas:
-                self.data_lst.insert(tk.END, f'Id: {str(data[0])}')
-                self.data_lst.insert(tk.END, f'Name: {str(data[1])}')
-                self.data_lst.insert(tk.END, f'Class: {str(data[2])}')
-                self.data_lst.insert(tk.END, f'Phone: {str(data[3])}')
-                self.data_lst.insert(tk.END, f'DOB: {str(data[4])}')
-                self.data_lst.insert(tk.END, f'DOA: {str(data[5])}')
-                self.data_lst.insert(tk.END, '')
+        elif len(datas) > 0:
+            #Threading
+            self.create_thread(self.searchprogress_thread, [datas])
     
     def edit_search_record(self):
         """Searching from the database for editing"""
