@@ -192,7 +192,3 @@ class MainpageView(MainpageBackend):
         self.theme_combo = ttk.Combobox(self.theme_frame, values=THEMES, width=35)
         self.theme_combo.pack(padx=10, pady=10)
         self.theme_combo.bind('<<ComboboxSelected>>', lambda event:self.mainpage.set_theme(self.theme_combo.get()))
-        
-        #Theme progressbar
-        self.theme_progress = ttk.Progressbar(self.theme_frame, length=300)
-        self.theme_progress.pack(padx=10, pady=10)
