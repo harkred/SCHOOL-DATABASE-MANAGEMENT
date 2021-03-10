@@ -133,9 +133,7 @@ class MainpageBackend(MainpageThread):
         if len(datas) == 0: msg.showerror('', 'Student data not found')
         
         else:
-            msg.showinfo('', 'Student data found')
-            for data in datas:
-                self.del_lst.insert(tk.END, data)
+            self.create_thread(self.delsrchprogress_thread, [datas])
     
     def del_record(self, event):
         """For deleting the selected record"""
@@ -144,5 +142,4 @@ class MainpageBackend(MainpageThread):
                 DELETE FROM student_data WHERE id = %s
         """, values=(self.del_lst.get(tk.ANCHOR)[0],), database='school')
         
-        self.del_lst.delete(tk.ANCHOR)
-        msg.showinfo('', 'Record sucessfully deleted')
+        self.create_thread(self.delprogress_thread, [])

@@ -151,3 +151,30 @@ class MainpageThread():
         
         for entry in self.edit_entries:
             entry.config(state='readonly')
+            
+    def delsrchprogress_thread(self, datas):
+        """Updating progress when a record is searched for deletin"""
+        for _ in range(0, 2):
+            self.delete_progress['value'] += 50
+            self.mainpage.update_idletasks()
+            time.sleep(0.5)
+        
+        msg.showinfo('', 'Student data found')
+        self.delete_progress['value'] = 0
+        
+        for data in datas:
+            self.del_lst.insert(tk.END, data)
+            
+    def delprogress_thread(self):
+        """Updating progress when a record is deleted"""
+        for _ in range(0, 5):
+            self.delete_progress['value'] += 20
+            self.mainpage.update_idletasks()
+            time.sleep(0.5)
+        
+        self.del_lst.config(state='disabled')
+        self.delete_progress['value'] = 0
+        self.del_lst.config(state='normal')
+        
+        self.del_lst.delete(tk.ANCHOR)
+        msg.showinfo('', 'Record sucessfully deleted')
