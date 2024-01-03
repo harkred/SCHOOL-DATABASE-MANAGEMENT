@@ -1,2 +1,2 @@
 # SCHOOL-DATABASE-MANAGEMENT
-A tkinter based GUI which can be used to store and manage a student's data of a particular school efficiently
+A backend application to store and manage a student's data from a particular school efficiently. The application uses Tkinter to create the GUI, MySQL for database management, and multithreading for efficiency.
